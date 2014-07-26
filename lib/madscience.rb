@@ -1,5 +1,5 @@
 require "madscience/version"
 
-module Madscience
+module MadScience
   # Your code goes here...
 end
