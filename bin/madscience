@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# First, make sure we have all the requested gems
+require "bundler"
+Bundle.setup
+
+# And the right Ruby version
+if RUBY_PLATFORM == "java"
+  raise "Please install and run the MadScience gem in the Ruby you'll be deploying with! That means MRI 1.9.2+!"
+end
+
+unless RUBY_VERSION[0..1] == "2." || RUBY_VERSION[0..2] == "1.9"
+  raise "Please install Ruby version 1.9.2+ for MadScience compatibility!"
+end
+
+# Now we'll use Chef to install the right version of Vagrant
+# with the right plugin(s).
+
+system("chef-solo", "-c", "solo.rb")
