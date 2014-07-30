@@ -2,7 +2,7 @@
 
 # First, make sure we have all the requested gems
 require "bundler"
-Bundle.setup
+Bundler.setup
 
 # And the right Ruby version
 if RUBY_PLATFORM == "java"
@@ -12,6 +12,8 @@ end
 unless RUBY_VERSION[0..1] == "2." || RUBY_VERSION[0..2] == "1.9"
   raise "Please install Ruby version 1.9.2+ for MadScience compatibility!"
 end
+
+# TODO: make sure we're running with sufficient permissions
 
 # Now we'll use Chef to install the right version of Vagrant
 # with the right plugin(s).
