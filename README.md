@@ -48,6 +48,8 @@ After you've installed the Mad Science gem ("gem install madscience"), you'll
 want to run the setup command:
 
    sudo madscience setup
+   # OR, with rvm:
+   rvmsudo madscience setup # this leaves RVM's env vars set properly
 
 This will install, help install or check versions of all software in the
 currently installed Mad Science Stack version. It will get you set up
@@ -73,6 +75,13 @@ The setup command will run Chef locally on your development machine. So it'll
 leave behind a Chef temp directory (/var/chef on Linux or Mac OS X machines.)
 That's also why you need to run it as the administrator -- that and the fact
 that you're installing virtualization software, of course.
+
+### Running locally
+
+If you've cloned the madscience gem from GitHub and don't have it installed,
+you'll want to run it like this:
+
+   rvmsudo_secure_path=1 rvmsudo bundle exec bin/madscience
 
 ## License
 
