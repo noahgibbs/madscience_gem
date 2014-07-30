@@ -1,17 +1,22 @@
 #!/usr/bin/env ruby
 
-# First, make sure we have all the requested gems
-require "bundler"
-Bundler.setup
-
-# And the right Ruby version
+# First, make sure we have the right Ruby version
 if RUBY_PLATFORM == "java"
   raise "Please install and run the MadScience gem in the Ruby you'll be deploying with! That means MRI 1.9.2+!"
 end
-
 unless RUBY_VERSION[0..1] == "2." || RUBY_VERSION[0..2] == "1.9"
   raise "Please install Ruby version 1.9.2+ for MadScience compatibility!"
 end
+
+# Require the MadScience gem, which will then be in $LOAD_PATH
+require "madscience"
+ms_path = $LOAD_PATH.detect { |p| File.exist? File.join(p, "..", ".madscience_gem_location") }
+raise "Can't find MadScience gem in $LOAD_PATH: #{$LOAD_PATH.inspect}!" unless ms_path
+Dir.chdir File.join(ms_path, "..")
+
+# Set up Bundler with the MadScience gem's Gemfile
+require "bundler"
+Bundler.setup
 
 # TODO: make sure we're running with sufficient permissions
 
