@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'vagrant-cookbook',
+  :git => 'https://github.com/jtimberman/vagrant-cookbook'
+cookbook 'virtualbox-cookbook',
+  :git => 'https://github.com/jtimberman/virtualbox-cookbook'
