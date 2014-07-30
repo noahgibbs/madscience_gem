@@ -1,0 +1,14 @@
+Windows:
+  runas /user:Administrator "cmd /C chef-client"  (or equivalent chef-solo)
+  install Vagrant and VirtualBox MSI files, check registry for definitive MSI version string
+
+    MSI PLEASE NOTE - For proper idempotence the resource's package_name should be
+    the same as the 'DisplayName' registry value in the uninstallation data
+    that is created during package installation. The easiest way to
+    definitively find the proper 'DisplayName' value is to install the package
+    on a machine and search for the uninstall information under the following
+    registry keys:
+      HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall
+      HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall
+      HKEY_LOCAL_MACHINE\Software\Wow6464Node\Microsoft\Windows\CurrentVersion\Uninstall
+      For maximum flexibility the source attribute supports both remote and local installation packages.
