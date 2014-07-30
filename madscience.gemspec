@@ -27,7 +27,7 @@ DESC
 
   spec.add_runtime_dependency 'knife-solo', '0.4.2'
   spec.add_runtime_dependency 'librarian-chef', '0.0.3'
-  spec.add_runtime_dependency 'chef', '11.8.0'
+  spec.add_runtime_dependency 'chef', '11.12.8'
   spec.add_runtime_dependency 'capistrano', '3.2.1'
   spec.add_runtime_dependency 'capistrano-rails', '1.1.1'
   spec.add_runtime_dependency 'capistrano-bundler', '1.1.2'
