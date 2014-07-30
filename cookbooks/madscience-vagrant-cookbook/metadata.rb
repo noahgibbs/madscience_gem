@@ -6,8 +6,12 @@ description      'Installs/Configures Vagrant for the MadScience stack'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
-supports 'debian', '>= 6.0'
-supports 'ubuntu', '>= 12.04'
-supports 'redhat', '>= 6.3'
+supports 'debian'
+supports 'ubuntu'
+supports 'redhat'
+supports 'windows'
+supports 'mac_os_x'
 
-depends 'vagrant-cookbook' # Joshua Timberman's vagrant cookbook
+# Joshua Timberman's Vagrant and VirtualBox cookbooks
+depends 'vagrant-cookbook'
+depends 'virtualbox-cookbook'
