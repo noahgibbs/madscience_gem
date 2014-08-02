@@ -52,5 +52,5 @@ end
 
 
 # This will include the OS-appropriate recipe
-include_recipe "vagrant-cookbook"
-include_recipe "virtualbox-cookbook"
+include_recipe "vagrant"
+include_recipe "virtualbox"

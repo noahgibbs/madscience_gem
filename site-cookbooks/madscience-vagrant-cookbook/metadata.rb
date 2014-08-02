@@ -13,5 +13,5 @@ supports 'windows'
 supports 'mac_os_x'
 
 # Joshua Timberman's Vagrant and VirtualBox cookbooks
-depends 'vagrant-cookbook'
-depends 'virtualbox-cookbook'
+depends 'vagrant'
+depends 'virtualbox'
