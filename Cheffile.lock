@@ -13,7 +13,7 @@ GIT
   ref: master
   sha: bd1af8d31f9f20a7856b66f641b37f093ec3c530
   specs:
-    vagrant-cookbook (0.2.0)
+    vagrant (0.2.0)
       dmg (>= 0.0.0)
       windows (>= 0.0.0)
 
@@ -22,13 +22,13 @@ GIT
   ref: master
   sha: f694fbed1827128f9aa915e07c2a2d5598c0c6f6
   specs:
-    virtualbox-cookbook (0.7.2)
+    virtualbox (0.7.2)
       apt (>= 0.0.0)
       dmg (>= 0.0.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
 
 DEPENDENCIES
-  vagrant-cookbook (>= 0)
-  virtualbox-cookbook (>= 0)
+  vagrant (>= 0)
+  virtualbox (>= 0)
 

@@ -3,7 +3,7 @@
 
 site 'http://community.opscode.com/api/v1'
 
-cookbook 'vagrant-cookbook',
+cookbook 'vagrant',
   :git => 'https://github.com/jtimberman/vagrant-cookbook'
-cookbook 'virtualbox-cookbook',
+cookbook 'virtualbox',
   :git => 'https://github.com/jtimberman/virtualbox-cookbook'
