@@ -1,5 +1,15 @@
 #!/usr/bin/env ruby
 
+# TODO: change to real final URL :-)
+MADSCIENCE_REPO_URL = "../rails_server"
+
+# TODO: Add Windows runas incantation to replace sudo on Windows
+USAGE_INFO = <<USAGE
+Usage:
+  sudo #{$0} setup
+  #{$0} clone
+USAGE
+
 # First, make sure we have the right Ruby version
 if RUBY_PLATFORM == "java"
   raise "Please install and run the MadScience gem in the Ruby you'll be deploying with! That means MRI 1.9.2+!"
@@ -10,6 +20,11 @@ end
 
 # Require the MadScience gem, which will then be in $LOAD_PATH
 require "madscience"
+require "madscience/version"
+
+cur_dir = Dir.pwd
+
+# Change to MadScience dir to get correct Gemfile
 ms_path = $LOAD_PATH.detect { |p| File.exist? File.join(p, "..", ".madscience_gem_location") }
 raise "Can't find MadScience gem in $LOAD_PATH: #{$LOAD_PATH.inspect}!" unless ms_path
 Dir.chdir File.join(ms_path, "..")
@@ -18,9 +33,50 @@ Dir.chdir File.join(ms_path, "..")
 require "bundler"
 Bundler.setup
 
-# TODO: make sure we're running with sufficient permissions
+# TODO: make sure we're running with sufficient permissions - or use sudo?
+# On Mac and Linux, can check for Process.uid == 0
 
-# Now we'll use Chef to install the right version of Vagrant
-# with the right plugin(s).
+if ARGV[0] == "setup"
+  if ARGV.size > 1
+    puts "#{$0} setup takes no other arguments!"
+    exit -1
+  end
+  # Now we'll use Chef to install the right version of Vagrant
+  # with the right plugin(s).
 
-system("chef-solo", "-c", "solo.rb")
+  system("chef-solo", "-c", "solo.rb") or exit -1
+  exit 0  # Success!
+end
+
+if ARGV[0] == "clone"
+  if ARGV.size > 1
+    puts "#{$0} clone takes no other arguments!"
+    exit -1
+  end
+
+  # Change back to pre-Bundler-setup directory where we were invoked
+  Dir.chdir cur_dir
+
+  location = "madscience_deploy"
+
+  # Now we'll git clone the MadScience repo, at a branch corresponding to our MadScience version
+  cmd = "git clone #{MADSCIENCE_REPO_URL} -b #{MadScience::VERSION} #{location}"
+
+  unless system cmd
+    puts "Couldn't successfully clone MadScience repo from #{MADSCIENCE_REPO_URL}, branch #{MadScience::VERSION}!"
+    exit -1
+  end
+
+  puts "Successfully cloned repo into #{location} under directory #{cur_dir}. Now go in and customize it."
+  exit 0
+end
+
+if ARGV == []
+  puts "No command given."
+  puts USAGE_INFO
+  exit -1
+end
+
+puts "Unrecognized command: #{ARGV.inspect}!"
+puts USAGE_INFO
+exit -1
