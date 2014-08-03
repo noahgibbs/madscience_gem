@@ -3,11 +3,10 @@
 This gem helps deploy your Rails application to Vagrant and production.  It's
 based on the Mad Science Stack of tools, including Chef and Capistrano. It
 stores deployment credentials under your home directory in
-~/.deploy_credentials.
+the .deploy_credentials subdirectory.
 
 The Mad Science Stack is based on Ruby Mad Science
-(http://rubymadscience.com), a paid product, but this gem and the Mad Science
-Stack are entirely open-source and free to use (Apache 2.0 License), forever.
+(http://rubymadscience.com), a paid product.
 
 Mad Science Stack components are versioned together. The current version
 of the Mad Science Stack, Version 0.0.1, installs and uses these versions:
@@ -88,17 +87,7 @@ you'll want to run it like this:
 * Author:: Noah Gibbs (the.codefolio.guy@gmail.com)
 * Vagrant-Cookbook copyright 2013-2014 Joshua Timberman, everything else Copyright (c) 2014, Noah Gibbs
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+License still undetermined.
 
 ## Contributing
 
