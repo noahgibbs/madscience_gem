@@ -11,6 +11,7 @@ Usage:
 USAGE
 
 # First, make sure we have the right Ruby version
+# TODO: add more checks for RUBY_VERSION, RUBY_PLATFORM, etc. Ensure MRI.
 if RUBY_PLATFORM == "java"
   raise "Please install and run the MadScience gem in the Ruby you'll be deploying with! That means MRI 1.9.2+!"
 end
