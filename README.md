@@ -20,6 +20,7 @@ of the Mad Science Stack, Version 0.0.1, installs and uses these versions:
    Capistrano: 3.2.1
    Capistrano-Rails: 1.1.1
    Capistrano-Bundler: 1.1.2
+   Capistrano-RVM: 0.1.1
    SSHKit: 1.5.1
 
 It also has these dependencies:

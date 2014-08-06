@@ -31,6 +31,7 @@ DESC
   spec.add_runtime_dependency 'capistrano', '3.2.1'
   spec.add_runtime_dependency 'capistrano-rails', '1.1.1'
   spec.add_runtime_dependency 'capistrano-bundler', '1.1.2'
+  spec.add_runtime_dependency 'capistrano-rvm', '0.1.1'
   spec.add_runtime_dependency 'sshkit', '1.5.1'
 
   # Several other components of the stack like Vagrant and Chef
