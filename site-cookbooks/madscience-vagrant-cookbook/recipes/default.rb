@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+##### First, Install Vagrant and VirtualBox with appropriate versions and plugins.
+
 # Default attributes in a cookbook override default
 # attributes in an attributes file, like the one
 # in vagrant-cookbook/attributes/default.rb.
@@ -54,3 +56,32 @@ end
 # This will include the OS-appropriate recipe
 include_recipe "vagrant"
 include_recipe "virtualbox"
+
+##### Second, set up a local directory of deploy credentials if not already present.
+
+# TODO: Test this on Windows
+homedir = ENV['HOME'] || ENV['userprofile']
+creds_dir = File.join(homedir, ".deploy_credentials")
+
+# TODO: what's this on Windows?
+user = ENV['SUDO_USER'] || ENV['USER']
+
+directory creds_dir do
+  owner user
+  group user
+  mode "0700"
+end
+
+# TODO: what is Windows equivalent?
+execute "generate ssh keys for #{user}." do
+  user user
+  creates File.join(creds_dir, "id_rsa_4096.pub")
+  command "ssh-keygen -t rsa -q -f #{File.join creds_dir, "id_rsa_4096"} -P \"\""
+end
+
+# TODO: do what on Windows? Read file in cookbook and then assert contents?
+link File.join(creds_dir, "authorized_keys") do
+  user user
+  group user
+  to "id_rsa_4096.pub"
+end
