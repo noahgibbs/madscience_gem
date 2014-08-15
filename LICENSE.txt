@@ -1,4 +1,9 @@
 Vagrant-Cookbook copyright 2013-2014 Joshua Timberman,
+Virtualbox-Cookbook copyright 2013-2014 Joshua Timberman,
 everything else Copyright (c) 2014, Noah Gibbs
 
-License for everything else is still not determined.
+License for everything else is proprietary. For now, please do not
+redistribute without the prior written permission of Noah Gibbs.
+
+Except Joshua Timberman's Vagrant and VirtualBox cookbooks. You can
+redistribute those according to the Apache 2.0 license.

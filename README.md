@@ -86,9 +86,12 @@ you'll want to run it like this:
 ## License
 
 * Author:: Noah Gibbs (the.codefolio.guy@gmail.com)
-* Vagrant-Cookbook copyright 2013-2014 Joshua Timberman, everything else Copyright (c) 2014, Noah Gibbs
+* Vagrant-Cookbook copyright 2013-2014 Joshua Timberman, Apache 2.0 License
+* Virtualbox-Cookbook copyright 2013-2014 Joshua Timberman, Apache 2.0 License
+* Everything else (C) Noah Gibbs, 2014
 
-Proprietary license, please do not redistribute.
+Except Joshua Timberman's cookbooks, this code is under a proprietary license,
+please do not redistribute.
 
 ## Contributing
 
