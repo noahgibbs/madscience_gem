@@ -88,7 +88,7 @@ you'll want to run it like this:
 * Author:: Noah Gibbs (the.codefolio.guy@gmail.com)
 * Vagrant-Cookbook copyright 2013-2014 Joshua Timberman, everything else Copyright (c) 2014, Noah Gibbs
 
-License still undetermined.
+Proprietary license, please do not redistribute.
 
 ## Contributing
 
