@@ -26,7 +26,7 @@ of the Mad Science Stack, Version 0.0.1, installs and uses these versions:
 It also has these dependencies:
 MRI (plain) Ruby: 1.9.3 or higher, 2.0+ is great
 Bundler and RubyGems: recent
-SSH (TODO: check if Vagrant uses this on Windows)
+SSH
 A git repo to deploy, unless you just want the sample app
 
 Plus a number of specific gem and cookbook versions, of course, and many
@@ -36,11 +36,15 @@ even aside from the security concerns with doing so.
 
 ## Installation
 
+If it's on a private gem server you have access to...
+
 Add 'madscience' to your Gemfile or install it manually:
 
    gem install madscience
 
 You'll also need Git and SSH installed already.
+
+Otherwise clone this repo and run things locally from it.
 
 ## Usage
 
@@ -50,6 +54,8 @@ want to run the setup command:
    sudo madscience setup
    # OR, with rvm:
    rvmsudo madscience setup # this leaves RVM's env vars set properly
+   # OR, locally with rvm and gem not installed:
+   bundle install && rvmsudo bundle exec bin/madscience setup
 
 This will install, help install or check versions of all software in the
 currently installed Mad Science Stack version. It will get you set up
