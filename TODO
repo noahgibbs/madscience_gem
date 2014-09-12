@@ -1,3 +1,6 @@
+Mac and Linux:
+  Ensure current user has an id_rsa/id_dsa SSH key available
+
 Windows:
   runas /user:Administrator "cmd /C chef-client"  (or equivalent chef-solo)
   install Vagrant and VirtualBox MSI files, check registry for definitive MSI version string
