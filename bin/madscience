@@ -49,6 +49,7 @@ if ARGV[0] == "setup"
   # Now we'll use Chef to install the right version of Vagrant
   # with the right plugin(s).
 
+  system("librarian-chef", "install")
   system("chef-solo", "-c", "solo.rb") or exit -1
   exit 0  # Success!
 end
