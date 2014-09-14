@@ -1,13 +1,17 @@
 #!/usr/bin/env ruby
 
-# TODO: change to real final URL :-)
-MADSCIENCE_REPO_URL = "../rails_server"
+MADSCIENCE_REPO_URL = "git@github.com:noahgibbs/rubydeploy-deploy-repo.git"
 
 # TODO: Add Windows runas incantation to replace sudo on Windows
 USAGE_INFO = <<USAGE
 Usage:
   sudo #{$0} setup
   #{$0} clone
+
+  OR
+
+  rvmsudo #{$0} setup
+  ${$0} clone
 USAGE
 
 # First, make sure we have the right Ruby version
