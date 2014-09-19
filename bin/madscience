@@ -64,7 +64,8 @@ if ARGV[0] == "clone"
   # Change back to pre-Bundler-setup directory where we were invoked
   Dir.chdir cur_dir
 
-  location = "../deploy_repo"
+  home_dir = ENV['HOME'] || ENV['userprofile']
+  location = "#{home_dir}/deploy_repo"
 
   # Now we'll git clone the MadScience repo, at a branch corresponding to our MadScience version
   # TODO: check out MadScience::VERSION branch when we start having real releases

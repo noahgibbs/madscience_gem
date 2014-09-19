@@ -12,7 +12,7 @@
 # Default attributes in a cookbook override default
 # attributes in an attributes file, like the one
 # in vagrant-cookbook/attributes/default.rb.
-node.default['vagrant']['plugins'] = [ 'vagrant-omnibus' ]
+node.default['vagrant']['plugins'] = [ 'vagrant-omnibus', 'vagrant-librarian-chef' ]
 
 case node['platform_family']
 when 'fedora'
