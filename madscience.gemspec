@@ -8,21 +8,23 @@ Gem::Specification.new do |spec|
   spec.version       = MadScience::VERSION
   spec.authors       = ["Noah Gibbs"]
   spec.email         = ["noah_gibbs@yahoo.com"]
-  spec.summary       = %q{Install the current version of the MadScience stack.}
+  spec.summary       = %q{Install the current versions of the MadScience stack.}
   spec.description   = <<DESC
-Install the current version of the MadScience stack, a group of libraries and utilities
-to install your Ruby applications to a server, to allocate a server, and to test
-locally on a virtual server.
+Install the current versions of the MadScience stack. This stack includes
+Vagrant, Chef and Capistrano - tools to configure a server, simulate it and
+install software to it, as well as to allocate staging and production servers.
 DESC
-  spec.homepage      = ""
+  spec.homepage      = "http://rubymadscience.com"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0")
+  spec.files         = `git ls-files -z`.split("\x0") +
+    Dir.glob("cookbooks/**/*")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  # Needed to lock down versions, but not itself highly version-specific
+  # Need Bundler to lock down versions, but MadScience doesn't
+  # depend on a specific Bundler version.
   spec.add_runtime_dependency 'bundler', '~> 1.5'
 
   spec.add_runtime_dependency 'knife-solo', '0.4.2'
@@ -38,5 +40,5 @@ DESC
   # need to be used but can't be installed via RubyGems.
   # That's part of why this gem exists.
 
-  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rake', '~>10.3'
 end
