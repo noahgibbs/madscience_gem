@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/bin/bash
 
 librarian-chef install
 rm madscience-*.gem
