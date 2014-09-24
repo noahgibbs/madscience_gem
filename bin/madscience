@@ -76,7 +76,7 @@ if ARGV[0] == "clone"
     exit -1
   end
 
-  puts "Successfully cloned repo into #{location} under directory #{cur_dir}. Now go in and customize it."
+  puts "Successfully cloned repo into #{location} under directory #{location}. Now go in and customize it."
   exit 0
 end
 
