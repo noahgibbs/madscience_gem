@@ -73,10 +73,15 @@ directory creds_dir do
 end
 
 # TODO: what is Windows equivalent?
-execute "generate ssh keys for #{user}." do
+execute "generate ssh provisioning keys for #{user}." do
   user user
-  creates File.join(creds_dir, "id_rsa_4096.pub")
-  command "ssh-keygen -t rsa -q -f #{File.join creds_dir, "id_rsa_4096"} -P \"\""
+  creates File.join(creds_dir, "id_rsa_provisioning_4096.pub")
+  command "ssh-keygen -t rsa -q -f #{File.join creds_dir, "id_rsa_provisioning_4096"} -P \"\""
+end
+execute "generate ssh app-deploy keys for #{user}." do
+  user user
+  creates File.join(creds_dir, "id_rsa_deploy_4096.pub")
+  command "ssh-keygen -t rsa -q -f #{File.join creds_dir, "id_rsa_deploy_4096"} -P \"\""
 end
 
 # TODO: do what on Windows? Read file in cookbook and then assert contents?
