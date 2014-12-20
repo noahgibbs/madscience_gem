@@ -3,17 +3,17 @@ SITE
   specs:
     apt (2.4.0)
     chef_handler (1.1.6)
-    dmg (2.2.0)
-    windows (1.33.1)
+    dmg (2.2.2)
+    windows (1.36.1)
       chef_handler (>= 0.0.0)
     yum (3.2.2)
 
 GIT
   remote: https://github.com/jtimberman/vagrant-cookbook
   ref: master
-  sha: bd1af8d31f9f20a7856b66f641b37f093ec3c530
+  sha: 5e654a55706c4f97b4c72e914d72e6873d0a9531
   specs:
-    vagrant (0.2.0)
+    vagrant (0.2.1)
       dmg (>= 0.0.0)
       windows (>= 0.0.0)
 
