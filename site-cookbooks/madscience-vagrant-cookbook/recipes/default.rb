@@ -17,36 +17,36 @@ node.default['vagrant']['plugins'] = [ 'vagrant-omnibus', 'vagrant-librarian-che
 case node['platform_family']
 when 'fedora'
   if node['kernel']['machine'] == 'x86_64'
-    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm'
+    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.rpm'
   else
-    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_32.rpm'
+    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_32.rpm'
   end
 when 'rhel'
   if node['kernel']['machine'] == 'x86_64'
-    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm'
+    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.rpm'
   else
-    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_32.rpm'
+    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_32.rpm'
   end
 when 'debian'
   if node['kernel']['machine'] == 'x86_64'
-    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb'
+    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.deb'
   else
-    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_32.deb'
+    node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_32.deb'
   end
 when 'windows'
   # TODO: find real MSI version
-  node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi'
+  node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi'
 when 'mac_os_x'
-  node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.dmg'
+  node.default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.dmg'
 else
   raise "Don't recognize OS family: #{node['platform_family'].inspect}!"
 end
 
 case node['platform_family']
 when 'mac_os_x'
-  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-OSX.dmg'
+  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-93733-OSX.dmg'
 when 'windows'
-  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe'
+  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-93733-Win.exe'
   node.default['virtualbox']['version'] = Vbox::Helpers.vbox_version(node['virtualbox']['url'])
 when 'debian', 'rhel'
   node.default['virtualbox']['version'] = '4.3'
