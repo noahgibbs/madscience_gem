@@ -9,15 +9,6 @@ SITE
     yum (3.2.2)
 
 GIT
-  remote: https://github.com/jtimberman/vagrant-cookbook
-  ref: master
-  sha: 5e654a55706c4f97b4c72e914d72e6873d0a9531
-  specs:
-    vagrant (0.2.1)
-      dmg (>= 0.0.0)
-      windows (>= 0.0.0)
-
-GIT
   remote: https://github.com/jtimberman/virtualbox-cookbook
   ref: master
   sha: f694fbed1827128f9aa915e07c2a2d5598c0c6f6
@@ -27,6 +18,15 @@ GIT
       dmg (>= 0.0.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
+
+GIT
+  remote: https://github.com/noahgibbs/vagrant-cookbook
+  ref: master
+  sha: f4722d0f575f497038c47abd973dbee7f8f52eaf
+  specs:
+    vagrant (0.2.1)
+      dmg (>= 0.0.0)
+      windows (>= 0.0.0)
 
 DEPENDENCIES
   vagrant (>= 0)

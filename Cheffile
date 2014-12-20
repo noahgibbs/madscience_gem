@@ -4,6 +4,6 @@
 site 'http://community.opscode.com/api/v1'
 
 cookbook 'vagrant',
-  :git => 'https://github.com/jtimberman/vagrant-cookbook'
+  :git => 'https://github.com/noahgibbs/vagrant-cookbook'
 cookbook 'virtualbox',
   :git => 'https://github.com/jtimberman/virtualbox-cookbook'
