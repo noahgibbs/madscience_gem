@@ -111,7 +111,7 @@ you'll want to run it like this:
 
 It's easy to get permissions problems. You're running some commands as sudo, and other commands not as sudo. When this happens, the first thing to do is to blow away (with sudo) the cookbooks directory:
 
-   sudo rm -rf cookbooks
+   sudo rm -rf cookbooks/*
 
 ## License
 
