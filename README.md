@@ -103,6 +103,7 @@ you'll want to run it like this:
 
    # No RVM? Change "rvmsudo" to "sudo"
    bundle install
+   sudo rm -rf cookbooks/*  # Blow away root-owned cookbooks on later runs
    librarian-chef install
    rvmsudo bundle exec bin/madscience setup
    bundle exec bin/madscience clone
