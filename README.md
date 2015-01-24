@@ -107,6 +107,12 @@ you'll want to run it like this:
    rvmsudo bundle exec bin/madscience setup
    bundle exec bin/madscience clone
 
+## Problems?
+
+It's easy to get permissions problems. You're running some commands as sudo, and other commands not as sudo. When this happens, the first thing to do is to blow away (with sudo) the cookbooks directory:
+
+   sudo rm -rf cookbooks
+
 ## License
 
 * Author:: Noah Gibbs (the.codefolio.guy@gmail.com)
