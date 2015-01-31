@@ -1,5 +1,6 @@
 {
   "access_key_id": "",
   "secret_access_key": "",
+  "instance_type": "t2.micro",
   "ami": "ami-37eab407"
 }
