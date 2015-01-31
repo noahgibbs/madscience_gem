@@ -78,15 +78,17 @@ execute "generate ssh provisioning keys for #{user}." do
   creates File.join(creds_dir, "id_rsa_provisioning_4096.pub")
   command "ssh-keygen -t rsa -q -b 4096 -f #{File.join creds_dir, "id_rsa_provisioning_4096"} -P \"\""
 end
+
 execute "generate ssh app-deploy keys for #{user}." do
   user user
   creates File.join(creds_dir, "id_rsa_deploy_4096.pub")
   command "ssh-keygen -t rsa -q -b 4096 -f #{File.join creds_dir, "id_rsa_deploy_4096"} -P \"\""
 end
-execute "generate Digital Ocean ssh keys for #{user}." do
-  user user
-  creates File.join(creds_dir, "digital_ocean_ssh_key.pub")
-  command "ssh-keygen -t rsa -q -b 4096 -f #{File.join creds_dir, "digital_ocean_ssh_key"} -P \"\""
+
+cookbook_file "aws.json" do
+  owner user
+  path File.join(creds_dir, "aws.json")
+  action :create_if_missing
 end
 
 file File.join(creds_dir, "authorized_keys") do
