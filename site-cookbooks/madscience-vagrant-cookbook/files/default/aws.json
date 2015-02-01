@@ -1,6 +1,6 @@
 {
-  "access_key_id": "AKIAJFIZANMJRAVFR3WQ",
-  "secret_access_key": "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",
+  "access_key_id": "",
+  "secret_access_key": "",
   "instance_type": "t2.micro",
   "#comment": "Remember that AMIs are region-specific. See http://cloud-images.ubuntu.com/releases/14.04/release/ to find more AMIs.",
   "ami": "ami-29ebb519",
