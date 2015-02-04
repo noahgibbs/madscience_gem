@@ -85,6 +85,12 @@ execute "generate ssh app-deploy keys for #{user}." do
   command "ssh-keygen -t rsa -q -b 4096 -f #{File.join creds_dir, "id_rsa_deploy_4096"} -P \"\""
 end
 
+cookbook_file "digital_ocean.json" do
+  owner user
+  path File.join(creds_dir, "digital_ocean.json")
+  action :create_if_missing
+end
+
 cookbook_file "aws.json" do
   owner user
   path File.join(creds_dir, "aws.json")

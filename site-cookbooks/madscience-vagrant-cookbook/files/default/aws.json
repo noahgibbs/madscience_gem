@@ -4,5 +4,6 @@
   "instance_type": "t2.micro",
   "#comment": "Remember that AMIs are region-specific. See http://cloud-images.ubuntu.com/releases/14.04/release/ to find more AMIs.",
   "ami": "ami-29ebb519",
-  "region": "us-west-2"
+  "region": "us-west-2",
+  "keypair_name": "RubyMadScience"
 }
