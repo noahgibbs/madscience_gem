@@ -99,5 +99,6 @@ end
 
 file File.join(creds_dir, "authorized_keys") do
   user user
+  action :create_if_missing
   content File.read(File.join(creds_dir, "id_rsa_provisioning_4096.pub"))
 end
