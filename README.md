@@ -1,40 +1,36 @@
 # MadScience
 
-The MadScience stack helps deploy your Rails application to a new local VM and
-a matching production environment.  It uses Vagrant, Chef and Capistrano. It
-stores deployment credentials under your home directory in the
-.deploy_credentials subdirectory.
+The MadScience stack helps deploy your Rails application from a Mac or Linux
+development machine to a new local VM and a matching production environment.
+It uses Vagrant, Chef and Capistrano. It stores deployment credentials under
+your home directory in the .deploy_credentials subdirectory.
 
-The Mad Science Stack is based on a class called Ruby Mad Science
-(http://rubymadscience.com), a paid product.
+The Mad Science Stack is based on a class called Rails Deploy In An Hour
+(http://rails-deploy-in-an-hour.com), a paid product. This code is MIT
+licensed, however, and can be used according to that license.
 
 Each version of the Mad Science Stack is tested with a specific version of
 each tool. The current version of the Mad Science Stack, Version 0.0.1,
-installs and uses these other specific tool versions:
+installs and uses other specific tool versions, such as:
 
-   Chef: 11.12.8
+   Chef: 12.0.3
    Librarian-Chef: 0.0.3
    Knife-Solo: 0.4.2
-   Vagrant: 1.6.3
+   Vagrant: 1.7.1
    Vagrant-Omnibus: 1.4.2
    VirtualBox: 4.3.12
-   Capistrano: 3.2.1
-   Capistrano-Rails: 1.1.1
-   Capistrano-Bundler: 1.1.2
-   Capistrano-RVM: 0.1.1
-   SSHKit: 1.5.1
 
 Note that this doesn't include the tools that are (usually) deployed to like
 NGinX, Ubuntu Linux and so on -- those depend on the deploy repository.
 
 Not all of this software is used by every deploy repository. For instance,
 Capistrano can be optional. But if you use it with a given version of
-MadScience, that's the version being used.
+MadScience, that's the version we've tested with.
 
 The MadScience stack also has these dependencies:
-Bundler and RubyGems (some recent version)
-SSH
-A git repo to deploy, unless you just want the sample app
+* Bundler and RubyGems (some recent version)
+* SSH
+* A git repo to deploy, unless you just want the sample app
 
 A deploy repo will also use a number of specific gem and cookbook versions, of
 course.
