@@ -13,12 +13,12 @@ Each version of the Mad Science Stack is tested with a specific version of
 each tool. The current version of the Mad Science Stack, Version 0.0.1,
 installs and uses other specific tool versions, such as:
 
-   Chef: 12.0.3
-   Librarian-Chef: 0.0.3
-   Knife-Solo: 0.4.2
-   Vagrant: 1.7.1
-   Vagrant-Omnibus: 1.4.2
-   VirtualBox: 4.3.12
+* Chef: 12.0.3
+* Librarian-Chef: 0.0.3
+* Knife-Solo: 0.4.2
+* Vagrant: 1.7.1
+* Vagrant-Omnibus: 1.4.2
+* VirtualBox: 4.3.12
 
 Note that this doesn't include the tools that are (usually) deployed to like
 NGinX, Ubuntu Linux and so on -- those depend on the deploy repository.
