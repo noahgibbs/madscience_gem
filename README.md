@@ -27,7 +27,8 @@ Not all of this software is used by every deploy repository. For instance,
 Capistrano can be optional. But if you use it with a given version of
 MadScience, that's the version we've tested with.
 
-The MadScience stack also has these dependencies:
+The MadScience stack also assumes you have these installed:
+
 * Bundler and RubyGems (some recent version)
 * SSH
 * A git repo to deploy, unless you just want the sample app
