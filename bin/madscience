@@ -1,30 +1,33 @@
 #!/usr/bin/env ruby
 
+# Parameters which can be passed in environment variables
 MADSCIENCE_REPO_URL = ENV['MADSCIENCE_REPO'] ||
   "git@github.com:noahgibbs/madscience.git"
+MADSCIENCE_PROVIDER = ENV['MADSCIENCE_PROVIDER'] || "virtualbox"
 
 # TODO: Add Windows runas incantation to replace sudo on Windows
 USAGE_INFO = <<USAGE
 Usage:
-  sudo #{$0} setup
-  #{$0} clone
+  sudo #{$0} setup_and_clone
 
   OR
 
-  rvmsudo #{$0} setup
-  ${$0} clone
+  rvmsudo #{$0} setup_and_clone
+
+Other commands:
+  setup - install dev machine tools for madscience stack. Run as sudo.
+  clone - clone a new repository, called madscience, under this dir
 USAGE
 
 # First, make sure we have the right Ruby version
 # TODO: add more checks for RUBY_VERSION, RUBY_PLATFORM, etc. Ensure MRI.
 if RUBY_PLATFORM == "java"
-  raise "Please install and run the MadScience gem in the Ruby you'll be deploying with! That means MRI 1.9.2+!"
+  raise "Please install and run the MadScience gem in the Ruby you'll be deploying with! That means MRI 2.0.0+!"
 end
-unless RUBY_VERSION[0..1] == "2." || RUBY_VERSION[0..2] == "1.9"
-  raise "Please install Ruby version 1.9.2+ for MadScience compatibility!"
+unless RUBY_VERSION[0..1] == "2."
+  raise "Please install Ruby version 2.0.0+ for MadScience compatibility!"
 end
 
-# Require the MadScience gem, which will then be in $LOAD_PATH
 require "madscience"
 require "madscience/version"
 
@@ -39,53 +42,98 @@ Dir.chdir File.join(ms_path, "..")
 require "bundler"
 Bundler.setup
 
-# TODO: make sure we're running with sufficient permissions - or use sudo?
-# On Mac and Linux, can check for Process.uid == 0
+def check_superuser
+  raise "Must run as superuser!" unless Process.uid == 0
+end
+
+def get_sudo_user
+  raise "Can't find your $SUDO_USER!" unless ENV['SUDO_USER']
+  ENV['SUDO_USER']
+end
+
+def get_sudo_uid
+  raise "Can't find your $SUDO_UID!" unless ENV['SUDO_UID']
+  ENV['SUDO_UID'].to_i
+end
+
+def drop_sudo_privileges
+  Process.setuid get_sudo_id
+end
+
+def do_local_setup
+  system("librarian-chef", "install")
+  system("chef-solo", "-c", "solo.rb") or raise "Failed during chef run!"
+end
+
+def do_clone
+  # Clone the MadScience repo
+  # TODO: check out MadScience::VERSION branch when we start having stable releases
+  unless system "git clone #{MADSCIENCE_REPO_URL} madscience"
+    raise "Couldn't successfully clone MadScience repo from #{MADSCIENCE_REPO_URL}!"
+  end
+end
+
+def do_deploy
+  # Deploy from the 'madscience' dir under this directory
+
+  cmd = "cd madscience && vagrant up --provision --provider=#{MADSCIENCE_PROVIDER}"
+
+  # Does this display STDOUT properly?
+  pid = Kernel.spawn cmd
+  Process.wait pid  # Wait for process to finish
+
+  unless $?.success?
+    raise "Deploy process failed with status #{$?.exitstatus}! Fix and/or re-run using 'vagrant provision'!"
+  end
+
+  puts <<-MESSAGE
+You have successfully deployed the default Rails application in your repository (#{MADSCIENCE_REPO_URL}).
+Congratulations! If this isn't your actual Rails application, go and modify madscience/nodes/all_nodes.json.erb.
+You can find documentation in the RubyMadScience wiki: 
+    https://github.com/noahgibbs/madscience/wiki
+
+Have fun with RubyMadScience!
+  MESSAGE
+end
+
+# No subcommand takes arguments (yet?)
+if ARGV.size > 1
+  raise "#{$0} #{ARGV[0]} takes no other arguments!"
+end
 
 if ARGV[0] == "setup"
-  if ARGV.size > 1
-    puts "#{$0} setup takes no other arguments!"
-    exit -1
-  end
   # Now we'll use Chef to install the right version of Vagrant
   # with the right plugin(s).
 
-  system("librarian-chef", "install")
-  system("chef-solo", "-c", "solo.rb") or exit -1
+  check_superuser
+  do_local_setup
   exit 0  # Success!
 end
 
 if ARGV[0] == "clone"
-  if ARGV.size > 1
-    puts "#{$0} clone takes no other arguments!"
-    exit -1
-  end
+  do_clone
 
-  # Change back to pre-Bundler-setup directory where we were invoked
-  Dir.chdir cur_dir
+  puts "Successfully cloned repo into #{location} under this directory. Now customize nodes/all_nodes.json.erb!"
+  exit 0
+end
 
-  home_dir = ENV['HOME'] || ENV['userprofile']
-  location = "#{home_dir}/deploy_repo"
+if ARGV[0] == "setup_clone_and_deploy"
+  check_superuser
+  do_local_setup
 
-  # Now we'll git clone the MadScience repo, at a branch corresponding to our MadScience version
-  # TODO: check out MadScience::VERSION branch when we start having real releases
-  cmd = "git clone #{MADSCIENCE_REPO_URL} #{location}"
+  drop_sudo_privileges
 
-  unless system cmd
-    puts "Couldn't successfully clone MadScience repo from #{MADSCIENCE_REPO_URL}, branch #{MadScience::VERSION}!"
-    exit -1
-  end
+  do_clone
+  do_deploy
 
-  puts "Successfully cloned repo into #{location} under directory #{location}. Now go in and customize it."
+  puts "Successfully cloned repo into #{location} under directory #{location}. Now customize nodes/all_nodes.json.erb!"
   exit 0
 end
 
 if ARGV == []
-  puts "No command given."
   puts USAGE_INFO
-  exit -1
+  raise "No command given!"
 end
 
-puts "Unrecognized command: #{ARGV.inspect}!"
 puts USAGE_INFO
-exit -1
+raise "Unrecognized command: #{ARGV.inspect}!"
