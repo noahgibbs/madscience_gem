@@ -52,9 +52,9 @@ end
 
 case node['platform_family']
 when 'mac_os_x'
-  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-93733-OSX.dmg'
+  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96996-OSX.dmg'
 when 'windows'
-  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-93733-Win.exe'
+  node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96996-Win.exe'
   node.default['virtualbox']['version'] = Vbox::Helpers.vbox_version(node['virtualbox']['url'])
 when 'debian', 'rhel'
   node.default['virtualbox']['version'] = '4.3'
