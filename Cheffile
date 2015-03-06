@@ -3,7 +3,9 @@
 
 site 'http://community.opscode.com/api/v1'
 
+# TODO: lock down Vagrant and VirtualBox cookbooks at specific release version
+
 cookbook 'vagrant',
   :git => 'https://github.com/noahgibbs/vagrant-cookbook'
 cookbook 'virtualbox',
-  :git => 'https://github.com/jtimberman/virtualbox-cookbook'
+  :git => 'https://github.com/noahgibbs/virtualbox-cookbook'
