@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 MADSCIENCE_REPO_URL = ENV['MADSCIENCE_REPO'] ||
-  "git@github.com:noahgibbs/rubydeploy-deploy-repo.git"
+  "git@github.com:noahgibbs/madscience.git"
 
 # TODO: Add Windows runas incantation to replace sudo on Windows
 USAGE_INFO = <<USAGE
