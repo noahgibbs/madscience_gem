@@ -31,9 +31,22 @@ end
 require "madscience"
 require "madscience/version"
 
+def in_madscience_dir
+  initial_dir = Dir.pwd
+
+  # Change to MadScience dir to get correct Gemfile
+  ms_path = $LOAD_PATH.detect { |p| File.exist? File.join(p, "..", ".madscience_gem_location") }
+  raise "Can't find MadScience gem in $LOAD_PATH: #{$LOAD_PATH.inspect}!" unless ms_path
+  Dir.chdir File.join(ms_path, "..")
+
+  yield
+
+  Dir.chdir initial_dir
+end
+
 # Set up Bundler with the MadScience gem's Gemfile
 require "bundler"
-Bundler.setup
+in_madscience_dir { Bundler.setup }
 
 def check_superuser
   raise "Must run as superuser!" unless Process.uid == 0
@@ -54,18 +67,11 @@ def drop_sudo_privileges
 end
 
 def do_local_setup
-  initial_dir = Dir.pwd
-
-  # Change to MadScience dir to get correct Gemfile
-  ms_path = $LOAD_PATH.detect { |p| File.exist? File.join(p, "..", ".madscience_gem_location") }
-  raise "Can't find MadScience gem in $LOAD_PATH: #{$LOAD_PATH.inspect}!" unless ms_path
-  Dir.chdir File.join(ms_path, "..")
-
-  system("librarian-chef", "install")
-  system("chown -R #{get_sudo_user} cookbooks")
-  system("chef-solo", "-c", "solo.rb") or raise "Failed during chef run!"
-
-  Dir.chdir orig_dir
+  in_madscience_dir do
+    system("librarian-chef", "install")
+    system("chown -R #{get_sudo_user} cookbooks")
+    system("chef-solo", "-c", "solo.rb") or raise "Failed during chef run!"
+  end
 end
 
 def do_clone
