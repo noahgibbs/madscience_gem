@@ -57,11 +57,12 @@ def get_sudo_uid
 end
 
 def drop_sudo_privileges
-  Process.setuid get_sudo_id
+  Process::Sys.setuid get_sudo_uid
 end
 
 def do_local_setup
   system("librarian-chef", "install")
+  system("chown -R #{get_sudo_user} cookbooks")
   system("chef-solo", "-c", "solo.rb") or raise "Failed during chef run!"
 end
 
