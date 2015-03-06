@@ -13,7 +13,14 @@
 # attributes in an attributes file, like the one
 # in vagrant-cookbook/attributes/default.rb.
 node.default['vagrant']['version'] = '1.7.1'
-node.default['vagrant']['plugins'] = [ 'vagrant-omnibus', 'vagrant-librarian-chef', 'vagrant-aws', 'vagrant-digitalocean', 'vagrant-linode', 'vagrant-host-shell' ]
+node.default['vagrant']['plugins'] = [
+  { 'name' => 'vagrant-omnibus', 'version' => '1.4.1' },
+  { 'name' => 'vagrant-librarian-chef', 'version' => '0.2.1' },
+  { 'name' => 'vagrant-aws', 'version' => '0.6.0' },
+  { 'name' => 'vagrant-digitalocean', 'version' => '0.7.3' },
+  { 'name' => 'vagrant-linode', 'version' => '0.1.1' },
+  { 'name' => 'vagrant-host-shell', 'version' => '0.0.4' },
+]
 
 case node['platform_family']
 when 'fedora'
