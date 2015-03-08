@@ -8,11 +8,11 @@ MADSCIENCE_PROVIDER = ENV['MADSCIENCE_PROVIDER'] || "virtualbox"
 # TODO: Add Windows runas incantation to replace sudo on Windows
 USAGE_INFO = <<USAGE
 Usage:
-  sudo #{$0} setup_and_clone
+  sudo #{$0} construct
 
   OR
 
-  rvmsudo #{$0} setup_and_clone
+  rvmsudo #{$0} construct
 
 Other commands:
   setup - install dev machine tools for madscience stack. Run as sudo.
@@ -126,7 +126,7 @@ if ARGV[0] == "clone"
   exit 0
 end
 
-if ARGV[0] == "setup_clone_and_deploy"
+if ARGV[0] == "setup_clone_and_deploy" || ARGV[0] == "construct"
   check_superuser
   do_local_setup
 
