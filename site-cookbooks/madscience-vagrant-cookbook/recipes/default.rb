@@ -50,6 +50,22 @@ else
   raise "Don't recognize OS family: #{node['platform_family'].inspect}!"
 end
 
+# URL sometimes seems not to be properly chosen by Vagrant cookbook
+
+# I'm not going to require curl, but for this version of Vagrant, this is the output of
+# curl https://dl.bintray.com/mitchellh/vagrant/1.7.1_SHA256SUMS?direct
+curl_output = <<-CURL
+eaeb3ad6624ccaeaefa6fc7a77a2f5d9640ef9385c5eeebdb90602d5f2011176  vagrant_1.7.1.dmg
+abab1db382be4c5d6b1e5aad96fb0909a559c3e500c5b2eb3f0c9178de7d1ac5  vagrant_1.7.1.msi
+4396385d3493931634c5f12e464a991f75f36c93783d392c60100112ec3d406d  vagrant_1.7.1_i686.deb
+6e405a855c4426b04f568f62740f04025c548b2f722a4b3faee94b0b2ce19bc0  vagrant_1.7.1_i686.rpm
+6615b95fcd8044e2f5e1849ec1004df5e05e390812558ec2c4b3dcec541b92da  vagrant_1.7.1_x86_64.deb
+b66be4b8f7921f59b00c186344c8501f97a26e172e94c3add7298b5147bcab27  vagrant_1.7.1_x86_64.rpm
+CURL
+vagrant_package_name = node.default['vagrant']['url'].split("/")[-1]
+check_line = curl_output.split("\n").detect { |line| line[vagrant_package_name] }
+node.default['vagrant']['checksum'] = check_line.split(" ")[0]
+
 case node['platform_family']
 when 'mac_os_x'
   node.default['virtualbox']['url'] = 'http://download.virtualbox.org/virtualbox/4.3.24/VirtualBox-4.3.24-98716-OSX.dmg'
