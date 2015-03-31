@@ -15,7 +15,7 @@ doesn't exist, but you'll need to fill in your own passwords for external
 services like email, your own AWS deploy keys and so on if you need them.
 
 When in doubt, run setup and look in the deploy credentials directory and
-nodes/all_nodes.json.erb in the deploy repository. You can also read
+nodes/app-server.json.erb in the deploy repository. You can also read
 documentation in the MadScience project Wiki:
 https://github.com/noahgibbs/madscience/wiki
 

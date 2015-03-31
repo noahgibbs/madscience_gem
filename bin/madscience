@@ -140,7 +140,7 @@ end
 if ARGV[0] == "clone"
   do_clone
 
-  puts "Successfully cloned repo under this directory. Now customize nodes/all_nodes.json.erb!"
+  puts "Successfully cloned repo under this directory. Now customize nodes/app-server.json.erb!"
   exit 0
 end
 
@@ -153,7 +153,7 @@ if ARGV[0] == "setup_clone_and_deploy" || ARGV[0] == "construct"
   do_clone
   do_deploy
 
-  puts "Successfully cloned repo #{MADSCIENCE_REPO_URL} under this directory. Now customize nodes/all_nodes.json.erb!"
+  puts "Successfully cloned repo #{MADSCIENCE_REPO_URL} under this directory. Now customize nodes/app-server.json.erb!"
   exit 0
 end
 
