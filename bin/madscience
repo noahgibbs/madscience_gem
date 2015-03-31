@@ -7,12 +7,12 @@ MADSCIENCE_PROVIDER = ENV['MADSCIENCE_PROVIDER'] || "virtualbox"
 
 require "madscience/version"
 
-puts "Running madscience #{MadScience::VERSION} from #{__FILE__} / #{MadScience::VERSION_LIBDIR}"
-
 if ARGV == [ "--version" ]
   puts MadScience::VERSION
   exit 0
 end
+
+puts "Running madscience #{MadScience::VERSION}..."
 
 # TODO: Add Windows runas incantation to replace sudo on Windows
 USAGE_INFO = <<USAGE
@@ -90,6 +90,13 @@ def do_clone
   # TODO: check out MadScience::VERSION branch when we start having stable releases
   unless system "git clone #{MADSCIENCE_REPO_URL} madscience"
     raise "Couldn't successfully clone MadScience repo from #{MADSCIENCE_REPO_URL}!"
+  end
+  File.open(File.join("madscience", ".cloned_by"), "w") do |f|
+    f.puts <<-CLONED_BY
+MadScience gem version #{MadScience::VERSION}
+  bin: #{__FILE__}
+  libdir: #{MadScience::VERSION_LIBDIR}
+    CLONED_BY
   end
 end
 
