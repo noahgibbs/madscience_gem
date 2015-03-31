@@ -5,6 +5,13 @@ MADSCIENCE_REPO_URL = ENV['MADSCIENCE_REPO'] ||
   "git@github.com:noahgibbs/madscience.git"
 MADSCIENCE_PROVIDER = ENV['MADSCIENCE_PROVIDER'] || "virtualbox"
 
+require "madscience/version"
+
+if ARGV == [ "--version" ]
+  puts MadScience::VERSION
+  exit 0
+end
+
 # TODO: Add Windows runas incantation to replace sudo on Windows
 USAGE_INFO = <<USAGE
 Usage:
