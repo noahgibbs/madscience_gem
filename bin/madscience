@@ -7,6 +7,8 @@ MADSCIENCE_PROVIDER = ENV['MADSCIENCE_PROVIDER'] || "virtualbox"
 
 require "madscience/version"
 
+puts "Running madscience #{MadScience::VERSION} from #{__FILE__} / #{MadScience::VERSION_LIBDIR}"
+
 if ARGV == [ "--version" ]
   puts MadScience::VERSION
   exit 0
@@ -94,7 +96,7 @@ end
 def do_deploy
   # Deploy from the 'madscience' dir under this directory
 
-  cmd = "cd madscience && vagrant up --provision --provider=#{MADSCIENCE_PROVIDER}"
+  cmd = "cd madscience && bundle && vagrant up --provision --provider=#{MADSCIENCE_PROVIDER}"
 
   # Does this display STDOUT properly?
   pid = Kernel.spawn cmd
