@@ -77,7 +77,10 @@ when 'debian', 'rhel'
 end
 
 
-# This will include the OS-appropriate recipe
+# The Vagrant cookbook assumes it can find Vagrant as a first-in-path binary.
+# That mean /usr/bin has to be present and before any other path that might
+# have vagrant in it.
+ENV['PATH'] = "/usr/bin:#{ENV['PATH']}"
 include_recipe "vagrant"
 include_recipe "virtualbox"
 
