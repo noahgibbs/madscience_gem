@@ -115,7 +115,7 @@ def do_deploy
 
   puts <<-MESSAGE
 You have successfully deployed the default Rails application in your repository (#{MADSCIENCE_REPO_URL}).
-Congratulations! If this isn't your actual Rails application, go and modify madscience/nodes/all_nodes.json.erb.
+Congratulations! If this isn't your actual Rails application, go and modify madscience/nodes/app-server.json.erb.
 You can find documentation in the RubyMadScience wiki: 
     https://github.com/noahgibbs/madscience/wiki
 
