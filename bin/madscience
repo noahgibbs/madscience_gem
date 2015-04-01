@@ -77,9 +77,9 @@ end
 
 def do_local_setup
   in_madscience_dir do
-    # Don't librarian-chef install any more. The default
+    # Goal: Don't librarian-chef install any more. The default
     # cookbooks should be included by default now.
-    # system("librarian-chef", "install")
+    system("librarian-chef", "install")
     system("chown -R #{get_sudo_user} cookbooks")
     system("chef-solo", "-c", "solo.rb") or raise "Failed during chef run!"
   end
