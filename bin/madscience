@@ -119,10 +119,6 @@ def do_deploy
       raise "Deploy process failed with status #{$?.exitstatus}! Fix and/or re-run using 'vagrant provision'!"
     end
 
-    if Dir[File.join("madscience", ".deployed-*")].empty?
-      raise "Deploy process didn't create a successful deploy! Fix and/or re-run using 'vagrant provision'!"
-    end
-
     puts <<-MESSAGE
 You have successfully deployed the default Rails application in your repository (#{MADSCIENCE_REPO_URL}).
 Congratulations! If this isn't your actual Rails application, go and modify madscience/nodes/app-server.json.erb.
