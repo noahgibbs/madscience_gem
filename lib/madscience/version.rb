@@ -1,4 +1,4 @@
 module MadScience
-  VERSION = "0.0.24"
+  VERSION = "0.0.25"
   VERSION_LIBDIR = File.dirname(__FILE__)
 end
