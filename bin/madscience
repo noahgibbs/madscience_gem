@@ -103,28 +103,35 @@ end
 def do_deploy
   # Deploy from the 'madscience' dir under this directory
 
-  cmd = "cd madscience && bundle && vagrant up --provision --provider=#{MADSCIENCE_PROVIDER}"
+  Dir.chdir "madscience" do
+    # Bundle in the subdirectory, but unset existing Bundler
+    # env vars, anything w/ "BUNDLE"
+    bkeys = ENV.keys.select { |k| k["BUNDLE"] }
+    pid = Kernel.spawn Hash[bkeys.zip([])], "bundle"
+    Process.wait pid
 
-  # Does this display STDOUT properly?
-  pid = Kernel.spawn cmd
-  Process.wait pid  # Wait for process to finish
+    cmd = "vagrant up --provision --provider=#{MADSCIENCE_PROVIDER}"
 
-  unless $?.success?
-    raise "Deploy process failed with status #{$?.exitstatus}! Fix and/or re-run using 'vagrant provision'!"
-  end
+    pid = Kernel.spawn cmd
+    Process.wait pid  # Wait for process to finish
 
-  if Dir[File.join("madscience", ".deployed-*")].empty?
-    raise "Deploy process didn't create a successful deploy! Fix and/or re-run using 'vagrant provision'!"
-  end
+    unless $?.success?
+      raise "Deploy process failed with status #{$?.exitstatus}! Fix and/or re-run using 'vagrant provision'!"
+    end
 
-  puts <<-MESSAGE
+    if Dir[File.join("madscience", ".deployed-*")].empty?
+      raise "Deploy process didn't create a successful deploy! Fix and/or re-run using 'vagrant provision'!"
+    end
+
+    puts <<-MESSAGE
 You have successfully deployed the default Rails application in your repository (#{MADSCIENCE_REPO_URL}).
 Congratulations! If this isn't your actual Rails application, go and modify madscience/nodes/app-server.json.erb.
 You can find documentation in the RubyMadScience wiki: 
     https://github.com/noahgibbs/madscience/wiki
 
 Have fun with RubyMadScience!
-  MESSAGE
+    MESSAGE
+  end
 end
 
 # No subcommand takes arguments (yet?)
