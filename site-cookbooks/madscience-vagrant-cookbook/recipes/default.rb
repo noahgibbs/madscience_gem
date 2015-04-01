@@ -120,6 +120,12 @@ cookbook_file "aws.json" do
   action :create_if_missing
 end
 
+cookbook_file "linode.json" do
+  owner user
+  path File.join(creds_dir, "linode.json")
+  action :create_if_missing
+end
+
 file File.join(creds_dir, "authorized_keys") do
   user user
   action :create_if_missing
