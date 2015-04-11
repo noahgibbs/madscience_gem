@@ -1,16 +1,16 @@
 SITE
-  remote: http://community.opscode.com/api/v1
+  remote: https://community.opscode.com/api/v1
   specs:
-    apt (2.6.1)
+    apt (2.7.0)
     chef_handler (1.1.6)
     dmg (2.2.2)
     windows (1.36.6)
       chef_handler (>= 0.0.0)
-    yum (3.5.3)
+    yum (3.5.4)
 
 GIT
   remote: https://github.com/noahgibbs/vagrant-cookbook
-  ref: master
+  ref: v0.0.29
   sha: 802fccf8d451a48e302e08e82441795d9833c175
   specs:
     vagrant (0.2.2)
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/noahgibbs/virtualbox-cookbook
-  ref: master
+  ref: v0.0.29
   sha: 5336d572b061f72a7130c9031930b3cbbfc00456
   specs:
     virtualbox (0.7.2)
