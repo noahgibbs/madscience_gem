@@ -84,6 +84,44 @@ ENV['PATH'] = "/usr/bin:#{ENV['PATH']}"
 include_recipe "vagrant"
 include_recipe "virtualbox"
 
+# HIDEOUS WORKAROUND:
+# If you've previously installed Vagrant and manually uninstalled, the Vagrant
+# installer will simply fail to install, quietly. D'oh!
+# You have to manuall remove the package: sudo pkgutil --forget com.vagrant.vagrant
+# But there are other reasons this could happen, so escalate to the user :-(
+ruby_block "See if Vagrant just didn't install" do
+  block do
+    if !File.exist? "/opt/vagrant" || Dir["/opt/vagrant"].empty?
+      raise "Vagrant failed to install, but didn't raise an error! Uninstall manually and try again! http://docs.vagrantup.com/v2/installation/uninstallation.html"
+    end
+  end
+end
+
+# HIDEOUS WORKAROUND:
+# When the phase of the moon is wrong, the Vagrant cookbook will
+# install plugins to its own satisfaction, but they won't show up in
+# "vagrant plugin list" or actually work. But re-running the Vagrant
+# cookbook doesn't help, it thinks it's installed. Until debugged,
+# escalate to user.
+#
+# Are you a user? If so, you can fix this by manually installing
+# whatever plugins you don't see in "vagrant plugin list", from
+# the set of node.default['vagrant']['plugins'] above. Be sure
+# to install with the version given, like this:
+#
+# vagrant plugin install vagrant-whatever-plugin --plugin-version 1.2.3
+
+ruby_block "See if Vagrant plugins just didn't install" do
+  ALL_PLUGINS = node.default['vagrant']['plugins'].map { |row| row['name'] }
+  block do
+    output = `/usr/bin/vagrant plugin list` || ""
+    missing_plugins = ALL_PLUGINS.select { |p| !output[p] }
+    unless missing_plugins.empty?
+      raise "Vagrant plugins not installed correctly: #{missing_plugins.inspect}! Uninstall Vagrant and re-run :-(   http://docs.vagrantup.com/v2/installation/uninstallation.html"
+    end
+  end
+end
+
 ##### Second, set up a local directory of deploy credentials if not already present.
 
 # TODO: Test this on Windows
