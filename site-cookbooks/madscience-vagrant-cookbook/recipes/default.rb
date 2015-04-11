@@ -22,6 +22,9 @@ node.default['vagrant']['plugins'] = [
   { 'name' => 'vagrant-host-shell', 'version' => '0.0.4' },
 ]
 
+# This will install (only) user plugins under this user's home dir
+node.default['vagrant']['user'] = ENV['SUDO_USER'] || ENV['USER'] || "root"
+
 case node['platform_family']
 when 'fedora'
   if node['kernel']['machine'] == 'x86_64'
