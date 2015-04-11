@@ -5,6 +5,10 @@ development machine to a new local VM and a matching production environment.
 It uses Vagrant, Chef and Capistrano. It stores deployment credentials under
 your home directory in the .deploy_credentials subdirectory.
 
+Most documentation is given with the base deploy repo:
+"http://github.com/noahgibbs/madscience" and its wiki:
+"https://github.com/noahgibbs/madscience/wiki".
+
 The Mad Science Stack is based on a class called Rails Deploy In An Hour
 (http://rails-deploy-in-an-hour.com), a paid product. This code is MIT
 licensed, however, and can be used according to that license.
@@ -17,7 +21,7 @@ services like email, your own AWS deploy keys and so on if you need them.
 When in doubt, run setup and look in the deploy credentials directory and
 nodes/app-server.json.erb in the deploy repository. You can also read
 documentation in the MadScience project Wiki:
-https://github.com/noahgibbs/madscience/wiki
+"https://github.com/noahgibbs/madscience/wiki"
 
 It's also possible to purchase an online class with additional videos, example
 configurations and documentation at "http://rails-deploy-in-an-hour.com" if you wish.
