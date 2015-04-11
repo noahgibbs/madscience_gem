@@ -111,6 +111,10 @@ end
 #
 # vagrant plugin install vagrant-whatever-plugin --plugin-version 1.2.3
 
+# What's weirdest about this is that the cookbook just installs
+# plugins via "vagrant plugin install". And it doesn't occur
+# repeatably on the same machine.
+
 ruby_block "See if Vagrant plugins just didn't install" do
   ALL_PLUGINS = node.default['vagrant']['plugins'].map { |row| row['name'] }
   block do
