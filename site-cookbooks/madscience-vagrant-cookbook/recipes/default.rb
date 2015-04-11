@@ -53,7 +53,7 @@ end
 # URL sometimes seems not to be properly chosen by Vagrant cookbook
 
 # I'm not going to require curl, but for this version of Vagrant, this is the output of
-# curl https://dl.bintray.com/mitchellh/vagrant/1.7.1_SHA256SUMS?direct
+# "curl -L https://dl.bintray.com/mitchellh/vagrant/1.7.1_SHA256SUMS?direct"
 curl_output = <<-CURL
 eaeb3ad6624ccaeaefa6fc7a77a2f5d9640ef9385c5eeebdb90602d5f2011176  vagrant_1.7.1.dmg
 abab1db382be4c5d6b1e5aad96fb0909a559c3e500c5b2eb3f0c9178de7d1ac5  vagrant_1.7.1.msi
