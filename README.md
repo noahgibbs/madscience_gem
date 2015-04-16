@@ -70,8 +70,8 @@ It's possible to clone this repo and run madscience locally, too.
 After madscience has been run, you can clone the default madscience deploy
 repository under the current directory, and create a new (development) VM:
 
-    rvmsudo madscience setup_clone_and_deploy  # with RVM
-    # OR sudo madscience setup_clone_and_deploy # with no RVM
+    rvmsudo construct  # with RVM
+    # OR sudo madscience construct # with no RVM
 
 You can also just install the tools without cloning a new repo or deploying it automatically.
 
@@ -81,12 +81,12 @@ You can also just install the tools without cloning a new repo or deploying it a
 And if you want a one-liner for your organization, you can specify a different
 deploy repository:
 
-    MADSCIENCE_REPO=git://my.org/path_to_my_repo rvmsudo madscience setup_clone_and_deploy
+    MADSCIENCE_REPO=git://my.org/path_to_my_repo rvmsudo madscience construct
 
 If you're really gung-ho and have your deploy credentials directory set up
 already, you can even clone and deploy to real hosting:
 
-    MADSCIENCE_REPO=git://my.org/path_to_my_repo MADSCIENCE_PROVIDER=aws rvmsudo madscience setup_clone_and_deploy
+    MADSCIENCE_REPO=git://my.org/path_to_my_repo MADSCIENCE_PROVIDER=aws rvmsudo madscience construct
 
 ## Usage
 
